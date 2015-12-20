@@ -13,7 +13,7 @@ var XML_DOCUMENT_DECLARATION = '<?xml version="1.0" encoding="utf-8"?>\n';
 /**
  *  Define the sample application.
  */
-var SampleApp = function() {
+var gNsPlTechTeamApp = function() {
 
     //  Scope.
     var self = this;
@@ -128,26 +128,41 @@ var SampleApp = function() {
         };
         
         /* gINSERT BEGIN */
-        /*self.routes['/gxslservice/string/lowercamelcase'] = function(req, res) {
+        self.routes['/calendar/add'] = function(req, res) {
             var varHostDomainUrl = req.protocol + '://' + req.host;
             res.set('Content-Type', 'text/xml');
-            if (typeof(req.query.string) === 'undefined' || typeof(req.query.delimiter) === 'undefined') {
-                res.send(XML_DOCUMENT_DECLARATION + "<response>" + "ERROR: Incorrectly formatted parameters -- see <![CDATA[" + varHostDomainUrl + "]]> for proper usage.</response>\n");
+            if (typeof(req.query.dateStart) === 'undefined' || typeof(req.query.countWeek) === 'undefined')  {
+                res.send(XML_DOCUMENT_DECLARATION + "<response>" 
+                    + "ERROR: Incorrectly formatted parameters -- see <![CDATA[" 
+                    + varHostDomainUrl + "]]> for proper usage.</response>\n");
             }
                 else {
-                    var stringArraySource = req.query.string.split(req.query.delimiter);
-                    var stringArrayTarget = new Array();
-                    if (stringArraySource.length > 0) {
-                        stringArrayTarget[0] = stringArraySource[0].toLowerCase();
-                        if (stringArraySource.length > 1) {
-                            for (var i = 1; i < stringArraySource.length; i++) {
-                                stringArrayTarget[i] = stringArraySource[i].charAt(0).toUpperCase() + stringArraySource[i].slice(1).toLowerCase();
-                            }
-                        }
-                    res.send(XML_DOCUMENT_DECLARATION + "<response>" + stringArrayTarget.join('') + "</response>\n");
-                    }
+                    res.send("https://api.teamup.com/ks69e45ed09a1b4374/events");
                 }
-        };*/
+/*            if (typeof(req.query.date) === 'undefined' || typeof(req.query.delimiter) === 'undefined') {
+                res.send(XML_DOCUMENT_DECLARATION + "<response>" + "ERROR: Incorrectly formatted parameters -- see <![CDATA[" + varHostDomainUrl + "]]> for proper usage.</response>\n");
+            }
+                else {*/
+                    /*var stringArraySource = req.query.string.split(req.query.delimiter);
+                    var stringArrayTarget = new Array();*/
+                    // if (stringArraySource.length > 0) {
+                    //     stringArrayTarget[0] = stringArraySource[0].toLowerCase();
+                    //     if (stringArraySource.length > 1) {
+                    //         for (var i = 1; i < stringArraySource.length; i++) {
+                    //             stringArrayTarget[i] = stringArraySource[i].charAt(0).toUpperCase() + stringArraySource[i].slice(1).toLowerCase();
+                    //         }
+                    //     }
+                    // res.send(XML_DOCUMENT_DECLARATION + "<response>" + stringArrayTarget.join('') + "</response>\n");
+/*                    res.send("https://api.teamup.com/ks69e45ed09a1b4374/events" 
+                        -XPOST  -H 'Teamup-Token: 52a98a3924b916c35eacce041cb0517ba89da4a48fa219f4cd093442501cdf0e' 
+                        -H 'Content-type: application/json' 
+                        --data '{"subcalendar_id":1235427, "start_dt":"2015-12-05T16:45:00-0800"
+                            , "end_dt":"2015-12-12T17:45:00-0800",  "all_day":false, "rrule": ""
+                            , "title": "NsPlTech", "who": "?", "location": ""
+                            , "notes":"\u003Cp\u003Eview/modify Calendar: \u003Ca href=\u0022http:\/\/teamup.com\/ks3d24758d31125c97\/\u0022 target=\u0022_blank\u0022 \u003Ehttp:\/\/teamup.com\/ks3d24758d31125c97\/\u003C\/a\u003E\u003C\/p\u003E"}');
+                    }*/
+                /*}*/
+        };
         self.routes['*'] = function(req, res) {
             var varHostDomainUrl = req.protocol + '://' + req.host;
             res.set('Content-Type', 'text/xml');
@@ -202,13 +217,13 @@ var SampleApp = function() {
         });
     };
 
-};   /*  Sample Application.  */
+};   /*  gNsPlTechTeamApp Application.  */
 
 
 
 /**
  *  main():  Main code.
  */
-var zapp = new SampleApp();
+var zapp = new gNsPlTechTeamApp();
 zapp.initialize();
 zapp.start();
